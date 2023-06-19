@@ -11,7 +11,10 @@ from linebot.models import (
 )
 import os
 
+import logging 
+
 app = Flask(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 #環境変数取得
 YOUR_CHANNEL_ACCESS_TOKEN = os.environ["ACCESS"]
@@ -22,7 +25,7 @@ handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
 @app.route("/callback", methods=['POST'])
 def callback():
-    print ("hello")
+    logging.debug("hello")
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
 
