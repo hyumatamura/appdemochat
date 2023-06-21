@@ -25,7 +25,7 @@ YOUR_CHANNEL_SECRET = os.environ["SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-total_sum = 0
+room_data = {}
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -52,17 +52,29 @@ def test():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global total_sum
+    global room_data
+
+    room_id = event.source.room_id
+
+    if room_id not in room_data :
+        room_data[room_id] = {
+            "total_sum" : 0
+        }
 
     message_text = event.message.text
     
-    if message_text.isdigit():
-        number = int(message_text)
-        total_sum += number
+    if '@memo' in message_text:
+        
+        numbers = [int(word) for word in message_text.split() if word.isdigit()]
 
-        reply_text = f"現在の合計は{total_sum} です。"
-    else : 
-        reply_text = "数字を入力してください。"
+        if numbers:
+            room_data[room_id]['total_sum'] += sum(numbers)  
+            reply_text = f"現在の合計は {room_data[room_id]['total_sum']} です。"
+        else:
+            reply_text = "数字を入力してください。"
+    else:
+        return  
+
 
     line_bot_api.reply_message(
         event.reply_token,
