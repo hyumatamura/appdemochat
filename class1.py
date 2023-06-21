@@ -14,6 +14,8 @@ import os
 import logging 
 
 app = Flask(__name__)
+#appをflaskのインスタンスとして作成
+
 logging.basicConfig(level=logging.DEBUG)
 
 #環境変数取得
@@ -40,6 +42,7 @@ def callback():
         abort(400)
 
     return 'OK'
+
 @app.route("/test", methods=["GET"])
 def test():
     logging.warning("hello")
