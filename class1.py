@@ -25,6 +25,8 @@ YOUR_CHANNEL_SECRET = os.environ["SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+total_sum = 0
+
 @app.route("/callback", methods=['POST'])
 def callback():
     logging.warning("hello")
@@ -50,9 +52,22 @@ def test():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global total_sum
+
+    message_text = event.message.text
+    
+    if message_text.isdigit():
+        number = int(message_text)
+        total_sum += number
+
+        reply_text = f"現在の合計は{total_sum} です。"
+    else : 
+        reply_text = "数字を入力してください。"
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text))
+        TextSendMessage(text=reply_text)
+    )
 
 
 if __name__ == "__main__":
