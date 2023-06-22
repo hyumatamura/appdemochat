@@ -54,13 +54,19 @@ def test():
 def handle_message(event):
     message_text = event.message.text
     
-    if '@memo' in message_text:
-        reply_text = "数字を入力してください。"
-        
+    if '@mention' in message_text:
+        numbers = [int(word) for word in message_text.split() if word.isdigit()]
+            
+        if numbers:
+            total_sum = sum(numbers)
+            reply_text = f"合計は {total_sum} です。"
+        else:
+            reply_text = "数字を入力してください。"
+            
         line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(text=reply_text)
-        )
+                event.reply_token,
+                TextSendMessage(text=reply_text)
+            )
 
 
 if __name__ == "__main__":
