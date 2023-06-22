@@ -52,37 +52,18 @@ def test():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    global room_data
-
-    room_id = event.source.room_id
-
-    if room_id not in room_data :
-        room_data[room_id] = {
-            "total_sum" : 0
-        }
-
     message_text = event.message.text
     
     if '@memo' in message_text:
+        reply_text = "数字を入力してください。"
         
-        numbers = [int(word) for word in message_text.split() if word.isdigit()]
-
-        if numbers:
-            room_data[room_id]['total_sum'] += sum(numbers)  
-            reply_text = f"現在の合計は {room_data[room_id]['total_sum']} です。"
-        else:
-            reply_text = "数字を入力してください。"
-    else:
-        return  
-
-
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=reply_text)
-    )
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=reply_text)
+        )
 
 
 if __name__ == "__main__":
-#    app.run()
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
