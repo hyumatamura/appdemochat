@@ -12,6 +12,7 @@ from linebot.models import (
 import os
 
 import logging 
+import re
 
 app = Flask(__name__)
 #appをflaskのインスタンスとして作成
@@ -55,7 +56,7 @@ def handle_message(event):
     message_text = event.message.text
     
     if '@mention' in message_text:
-        numbers = [int(word) for word in message_text.split() if word.isdigit()]
+        numbers = int(re.sub(r"\D", "", message_text))
             
         if numbers:
             total_sum = sum(numbers)
