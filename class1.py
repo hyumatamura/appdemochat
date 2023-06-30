@@ -26,7 +26,8 @@ YOUR_CHANNEL_SECRET = os.environ["SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-room_data = {}
+x_value = 0
+y_value = 0
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -46,24 +47,43 @@ def callback():
 
     return 'OK'
 
-@app.route("/test", methods=["GET"])
-def test():
-    logging.warning("hello")
-    return "ok"
-
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
     
-    if '@mention' in message_text:
-        reply_text = "tominaga shuntaro"
-    else:
-        reply_text = "数字を入力してください。"
-            
-    line_bot_api.reply_message(
+    if '@tip' in message_text:
+        if 'from@x' in message_text:
+            amount = re.sub(r"\D", "", message_text)
+            amount = int(amount)
+            x_value = x_value - amount
+            y_value = y_value + amount
+            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
+
+            line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=reply_text)
             )
+        
+        elif 'from@y' in message_text:
+            amount = re.sub(r"\D", "", message_text)
+            amount = int(amount)
+            x_value = x_value + amount
+            y_value = y_value - amount
+            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
+
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply_text)
+            )
+
+        else :
+            reply_text = "@tip from@x to@y を使用して下さい"
+            line_bot_api.reply_message(
+                event.reply_token,
+                TextSendMessage(text=reply_text)
+            )
+    else:
+        pass
 
 
 if __name__ == "__main__":
