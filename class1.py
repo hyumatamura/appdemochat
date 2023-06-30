@@ -51,6 +51,9 @@ def callback():
 def handle_message(event):
     message_text = event.message.text
     
+    x_value = 100
+    y_value = 100
+
     if '@tip' in message_text:
         if 'from@x' in message_text:
             amount = re.sub(r"\D", "", message_text)
@@ -77,8 +80,6 @@ def handle_message(event):
             )
 
         else :
-            x_value = 100
-            y_value = 100
             reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
             line_bot_api.reply_message(
                 event.reply_token,
