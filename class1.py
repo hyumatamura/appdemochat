@@ -56,7 +56,7 @@ def handle_message(event):
     message_text = event.message.text
     
     if '@mention' in message_text:
-        reply_text = "aiueo"
+        reply_text = "tominaga"
     else:
         reply_text = "数字を入力してください。"
             
