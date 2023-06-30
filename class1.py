@@ -26,9 +26,6 @@ YOUR_CHANNEL_SECRET = os.environ["SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
-x_value = 0
-y_value = 0
-
 @app.route("/callback", methods=['POST'])
 def callback():
     logging.warning("hello")
@@ -47,12 +44,12 @@ def callback():
 
     return 'OK'
 
+x_value = 0
+y_value = 0
+
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     message_text = event.message.text
-    
-    x_value = 100
-    y_value = 100
 
     if '@tip' in message_text:
         if 'from@x' in message_text:
