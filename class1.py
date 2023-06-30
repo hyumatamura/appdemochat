@@ -49,8 +49,9 @@ y_value = 0
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    global x_value
+    global y_value
     message_text = event.message.text
-
     if '@tip' in message_text:
         if 'from@x' in message_text:
             amount = re.sub(r"\D", "", message_text)
