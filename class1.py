@@ -26,6 +26,8 @@ YOUR_CHANNEL_SECRET = os.environ["SECRET"]
 line_bot_api = LineBotApi(YOUR_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(YOUR_CHANNEL_SECRET)
 
+x_value = 0
+y_value = 0
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -47,8 +49,6 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    x_value = 0
-    y_value = 0
     message_text = event.message.text
     
     if '@tip' in message_text:
@@ -77,7 +77,7 @@ def handle_message(event):
             )
 
         else :
-            reply_text = "@tip from@x to@y を使用して下さい"
+            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=reply_text)
