@@ -58,7 +58,7 @@ def handle_message(event):
             amount = int(amount)
             x_value = x_value - amount
             y_value = y_value + amount
-            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
+            reply_text = f"ひゅうまのありがとポイント残高は{x_value}です。とみのありがとポイント残高は{y_value}です。"
 
             line_bot_api.reply_message(
                 event.reply_token,
@@ -70,7 +70,7 @@ def handle_message(event):
             amount = int(amount)
             x_value = x_value + amount
             y_value = y_value - amount
-            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
+            reply_text = f"ひゅうまのありがとポイント残高は{x_value}です。とみのありがとポイント残高は{y_value}です。"
 
             line_bot_api.reply_message(
                 event.reply_token,
@@ -78,7 +78,7 @@ def handle_message(event):
             )
 
         else :
-            reply_text = f"xの残高は{x_value}です。yの残高は{y_value}です。"
+            reply_text = f"ひゅうまのありがとポイント残高は{x_value}です。とみのありがとポイント残高は{y_value}です。"
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=reply_text)
