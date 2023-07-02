@@ -71,7 +71,7 @@ def handle_message(event):
 
     if '@tip' in message_text:
         if 'from@Hyuma' in message_text:
-            if "to@Daisuke" : 
+            if "to@Daisuke" in message_text: 
                 amount = re.sub(r"\D", "", message_text)
                 amount = int(amount)
                 a_value = a_value - amount
@@ -83,7 +83,7 @@ def handle_message(event):
                     TextSendMessage(text=reply_text)
                  )
             
-            elif "to@Hitomi" :
+            elif "to@Hitomi" in message_text:
                 amount = re.sub(r"\D", "", message_text)
                 amount = int(amount)
                 a_value = a_value - amount
@@ -95,7 +95,7 @@ def handle_message(event):
                     TextSendMessage(text=reply_text)
                  )
             
-            elif "to@Chihaya":
+            elif "to@Chihaya" in message_text:
                 amount = re.sub(r"\D", "", message_text)
                 amount = int(amount)
                 a_value = a_value - amount
@@ -107,7 +107,7 @@ def handle_message(event):
                     TextSendMessage(text=reply_text)
                  )
             
-            elif "to@Yoshida":
+            elif "to@Yoshida" in message_text:
                 amount = re.sub(r"\D", "", message_text)
                 amount = int(amount)
                 a_value = a_value - amount
@@ -120,12 +120,12 @@ def handle_message(event):
                  )
 
             
-            elif "to@Rioko" :
+            elif "to@Rioko" in message_text:
                 amount = re.sub(r"\D", "", message_text)
                 amount = int(amount)
                 a_value = a_value - amount
                 f_value = f_value + amount
-                reply_text = f"Hyumaのチャミスル残高は{a_value}です。Yoshidaのチャミスル残高は{f_value}です。"
+                reply_text = f"Hyumaのチャミスル残高は{a_value}です。Riokoのチャミスル残高は{f_value}です。"
 
                 line_bot_api.reply_message(
                     event.reply_token,
