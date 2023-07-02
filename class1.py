@@ -141,20 +141,148 @@ def handle_message(event):
                  )
             
         
-        elif 'from@y' in message_text:
-            amount = re.sub(r"\D", "", message_text)
-            amount = int(amount)
-            x_value = x_value + amount
-            y_value = y_value - amount
-            reply_text = f"ひゅうまのありがとポイント残高は{x_value}です。とみのありがとポイント残高は{y_value}です。"
+        elif 'from@Daisuke' in message_text:
+            if "to@Hyuma" in message_text: 
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                b_value = b_value - amount
+                a_value = a_value + amount
+                reply_text = f"Hyumaのチャミスル残高は{a_value}です。Daisukeのチャミスル残高は{b_value}です。"
 
-            line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(text=reply_text)
-            )
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Hitomi" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                b_value = b_value - amount
+                c_value = c_value + amount
+                reply_text = f"Daisukeのチャミスル残高は{b_value}です。Hitomiのチャミスル残高は{c_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Chihaya" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                b_value = b_value - amount
+                d_value = d_value + amount
+                reply_text = f"Daisukeのチャミスル残高は{b_value}です。Chihayaのチャミスル残高は{d_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Yoshida" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                b_value = b_value - amount
+                e_value = e_value + amount
+                reply_text = f"Daisukeのチャミスル残高は{b_value}です。Yoshidaのチャミスル残高は{e_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+
+            
+            elif "to@Rioko" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                b_value = b_value - amount
+                f_value = f_value + amount
+                reply_text = f"Daisukeのチャミスル残高は{b_value}です。Riokoのチャミスル残高は{f_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+                
+            else : 
+                reply_text = f"Daisukeさん、正しいフォーマットで入力して下さい。 @tip from@Daisuke to@誰か"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+        
+        elif 'from@Hitomi' in message_text:
+            if "to@Hyuma" in message_text: 
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                c_value = c_value - amount
+                a_value = a_value + amount
+                reply_text = f"Hyumaのチャミスル残高は{a_value}です。Hitomiのチャミスル残高は{c_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Daisuke" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                c_value = c_value - amount
+                b_value = b_value + amount
+                reply_text = f"Daisukeのチャミスル残高は{b_value}です。Hitomiのチャミスル残高は{c_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Chihaya" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                c_value = c_value - amount
+                d_value = d_value + amount
+                reply_text = f"Hitomiのチャミスル残高は{c_value}です。Chihayaのチャミスル残高は{d_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+            
+            elif "to@Yoshida" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                c_value = c_value - amount
+                e_value = e_value + amount
+                reply_text = f"Hitomiのチャミスル残高は{c_value}です。Yoshidaのチャミスル残高は{e_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+
+            
+            elif "to@Rioko" in message_text:
+                amount = re.sub(r"\D", "", message_text)
+                amount = int(amount)
+                c_value = c_value - amount
+                f_value = f_value + amount
+                reply_text = f"Hitomiのチャミスル残高は{c_value}です。Riokoのチャミスル残高は{f_value}です。"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
+                
+            else : 
+                reply_text = f"Hitomiさん、正しいフォーマットで入力して下さい。 @tip from@Daisuke to@誰か"
+
+                line_bot_api.reply_message(
+                    event.reply_token,
+                    TextSendMessage(text=reply_text)
+                 )
 
         else :
-            reply_text = f"ひゅうまのありがとポイント残高は{x_value}です。とみのありがとポイント残高は{y_value}です。"
+            reply_text = f"チャミスル残高は以下の通りです。Hyuma={a_value}。Daisuke={b_value}。 Hitomi={c_value}。 Chihaya={d_value}。 Yoshida={e_value}。Rioko={f_value}"
             line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=reply_text)
